@@ -1,0 +1,4 @@
+host *
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/school
+	PasswordAuthentication no
