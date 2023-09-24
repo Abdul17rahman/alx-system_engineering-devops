@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+SERVER_IP=""
+PRIVATE_KEY="~/.ssh/school"
+
+ssh -i "PRIVATE_KEY" "ubuntu@$SERVER_IP"
