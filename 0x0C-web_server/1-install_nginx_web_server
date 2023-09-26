@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Install NGINX on our remote server
+# Install nginx web server
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-# create the html file
+# Create the html file
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# start the server
-sudo systemctl start nginx
+#Start the server
+sudo service nginx start
