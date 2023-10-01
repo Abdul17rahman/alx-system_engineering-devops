@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-# Create the file
-echo "Hello Holberton" > index.txt
+# Modify the file to port 8080 instead of 80
+cat > /etc/apache2/ports.conf << EOF
+Listen 8080
+EOF
 
-# Pull the apache image from docker hun
-docker pull httpd:latest
+# Modify the sites available
+cat > /etc/apache2/site-available/00-default.conf << EOF
+Listen 8080
+EOF
 
-# Run the apache container
-docker run -d -p 8080:80 httpd:latest
-
-# Acess our created file
-docker run -d -p 8080:80 -v "$(pwd)/index.txt:/usr/local/apache2/htdocs/index.html" httpd:latest
+# Restart apache2
+sudo service apache2 restart
