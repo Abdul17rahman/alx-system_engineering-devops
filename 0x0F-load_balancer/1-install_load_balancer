@@ -14,7 +14,8 @@ echo 'frontend http_front
 
 backend http_back
   balance roundrobin
-  server server1 127.0.0.1:80 check' | sudo tee /etc/haproxy/haproxy.cfg
+  server 33210-web-01 52.201.153.166 check
+  server 33210-web-02 54.160.108.108 check' | sudo tee /etc/haproxy/haproxy.cfg
 
 # Check the HAProxy configuration
 sudo haproxy -c -f /etc/haproxy/haproxy.cfg
