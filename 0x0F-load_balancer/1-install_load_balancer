@@ -1,3 +1,23 @@
 #!/usr/bin/env bash
+#Script that installs HAPROXY server, confiugres it with a custom header.
 
-# Install HAPROXY
+# Install Nginx
+sudo apt update -y
+
+sudo apt install -y haproxy
+
+# Configure HAProxy to add custom HTTP header
+echo 'frontend http_front
+  bind *:80
+  stats uri /haproxy?stats
+  default_backend http_back
+
+backend http_back
+  balance roundrobin
+  server server1 127.0.0.1:80 check' | sudo tee /etc/haproxy/haproxy.cfg
+
+# Check the HAProxy configuration
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# Start HAProxy service
+sudo service haproxy start
