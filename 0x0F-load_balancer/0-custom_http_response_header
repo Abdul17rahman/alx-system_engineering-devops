@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Install Nginx
-sudo apt update
+sudo apt update -y
 
-sudo install nginx
+sudo install nginx -y
 
 # Create Custom http header
 
