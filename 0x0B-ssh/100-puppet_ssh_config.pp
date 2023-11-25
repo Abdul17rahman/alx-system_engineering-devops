@@ -1,6 +1,6 @@
 # Configures connection without password
 
-file { '~/.ssh/config':
+file { '/root/.ssh/config':
   ensure  => 'file',
   content => "\
 Host *
