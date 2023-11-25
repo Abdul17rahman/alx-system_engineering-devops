@@ -1,5 +1,13 @@
 # Configures connection without password
 
-file { '~/.ssh/config':
-  content => 'host * \n\tPrefferedAuthentications publickey\n\tIdentitykey ~/.ssh/school\n\tPasswordAuthentication no'
+define resolve() {
+    $con = "host *
+        \tPrefferedAuthentications publickey
+        \tIdentityFile '~/.ssh/school'
+        \tPasswordAuthentication no
+        "
+
+    file { '~/.ssh/config':
+      content => $con,
+    }
 }
