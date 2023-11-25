@@ -1,7 +1,8 @@
 # Configures connection without password
 
-file { '/root/.ssh/config':
-  ensure  => 'file',
+file { 'config':
+  ensure  => 'present',
+  path    => '/etc/ssh/ssh_config',
   content => "\
 Host *
     PreferredAuthentications publickey
