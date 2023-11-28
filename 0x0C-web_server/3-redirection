@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Install nginx web server
+redirect="\\\trewrite ^/redirect_me(/*) https://www.google.com permanent;"
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo sed -i "51i $redirect" /etc/nginx/sites-available/default #add at line 51
+sudo service nginx start
