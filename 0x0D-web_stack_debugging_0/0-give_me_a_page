@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Modify the file to port 8080 instead of 80
+cat > /etc/apache2/ports.conf << EOF
+Listen 8080
+EOF
+
+# Modify the sites available
+cat > /etc/apache2/site-available/00-default.conf << EOF
+Listen 8080
+EOF
+
+# Restart apache2
+sudo service apache2 restart
