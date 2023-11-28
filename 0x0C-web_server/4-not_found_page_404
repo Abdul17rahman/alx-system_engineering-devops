@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Install nginx web server
+sudo apt-get -y update
+sudo apt-get -y install nginx
+# Create an error page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_page
+error="\\\terror_page 404 /error_page;\n\tlocation = /error_page {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
+sudo sed -i "56i $error" /etc/nginx/sites-available/default #add at line 56
+sudo service nginx start
