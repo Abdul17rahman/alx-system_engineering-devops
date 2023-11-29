@@ -10,5 +10,8 @@ cat > /etc/apache2/site-available/00-default.conf << EOF
 Listen 8080
 EOF
 
+# Set the hello holbertonschool
+echo "Hello Holberton" > /var/www/html/index.html
+
 # Start apache2
 sudo service apache2 start
