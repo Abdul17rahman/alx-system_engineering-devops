@@ -10,5 +10,5 @@ cat > /etc/apache2/site-available/00-default.conf << EOF
 Listen 8080
 EOF
 
-# Restart apache2
-sudo service apache2 restart
+# Start apache2
+sudo service apache2 start
