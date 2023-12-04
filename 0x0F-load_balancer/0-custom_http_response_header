@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Script that installs nginx server, confiugres it with a custom header.
+
+# Install Nginx
+sudo apt update -y
+
+sudo apt install nginx -y
+
+# Create Custom http header
+sudo sed -i "/server_name _/a \\    add_header X-Served-By \$HOSTNAME;" /etc/nginx/sites-available/default
+
+# Check the server configurations
+sudo nginx -t
+
+sudo service nginx start
