@@ -11,11 +11,13 @@ echo 'frontend http_front
   bind *:80
   stats uri /haproxy?stats
   default_backend http_back
+  mode http
 
 backend http_back
   balance roundrobin
-  server 33210-web-01 3.80.18.141 check
-  server 33210-web-02 54.208.94.156 check' | sudo tee /etc/haproxy/haproxy.cfg
+  mode http
+  server 33210-web-01 3.80.18.141:80 check
+  server 33210-web-02 54.208.94.156:80 check' | sudo tee /etc/haproxy/haproxy.cfg
 
 # Check the HAProxy configuration
 sudo haproxy -c -f /etc/haproxy/haproxy.cfg
