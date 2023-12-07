@@ -1,26 +1,5 @@
 #!/usr/bin/env bash
-# Installs nginx server
-apt-get update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-# Get a list of all active IPv4 addresses
-ipv4_addresses=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d'/' -f1)
-
-# Configure Nginx to listen on port 80 for all active IPv4 addresses
-for ip_address in $ipv4_addresses; do
-    sudo bash -c "cat << EOF > /etc/nginx/sites-available/default
-server {
-    listen 80;
-    server_name $ip_address;
-
-    location / {
-        root /var/www/html;
-        index index.html;
-    }
-}
-EOF"
-done
-
-# Restart Nginx to apply changes
+# Modify the nginx config to allow the server to work on port 80
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
-
