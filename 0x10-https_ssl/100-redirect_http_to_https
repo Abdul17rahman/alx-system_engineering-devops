@@ -1,0 +1,13 @@
+frontend http_front
+  bind *:80
+  bind *:443 ssl crt /etc/haproxy/certs/abdul17.pem
+  redirect scheme https if !{ ssl_fc }
+  stats uri /haproxy?stats
+  default_backend http_back
+  mode http
+
+backend http_back
+  balance roundrobin
+  mode http
+  server 33210-web-01 3.80.18.141:80 check
+  server 33210-web-02 54.208.94.156:80 check
