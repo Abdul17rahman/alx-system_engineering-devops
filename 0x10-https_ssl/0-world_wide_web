@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# This bash scrip prints the domain information
+
+# function
+audit_subdomain() {
+    local domain="$1"
+    local subdomain="$2"
+
+    # Default subdomains to audit
+    default_subdomains=("www" "lb-01" "web-01" "web-02")
+
+    # If subdomain is provided, use it; otherwise, use default subdomains
+    if [ -n "$subdomain" ]; then
+        subdomains=("$subdomain")
+    else
+        subdomains=("${default_subdomains[@]}")
+    fi
+
+    for sub in "${subdomains[@]}"; do
+        # Perform DNS query for the specified subdomain
+        result=$(nslookup -type=A "$sub.$domain" 2>/dev/null | awk '/^Address: / { print $2 }')
+
+        # Determine record type and destination
+        if [ -n "$result" ]; then
+            record_type="A"
+            destination="$result"
+        else
+            record_type="N/A"
+            destination="Record not found"
+        fi
+
+        # Display information
+        echo "The subdomain $sub is a $record_type record and points to $destination"
+    done
+}
+
+# Check if the required parameters are provided
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+# Assign parameters to variables
+domain="$1"
+subdomain="$2"
+
+# Perform subdomain audit
+audit_subdomain "$domain" "$subdomain"
+
