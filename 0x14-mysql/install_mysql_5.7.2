@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script installs MySql Database server on a Ubuntu Linux Server
+
+# Add a signature key
+sudo apt-key add signature.key
+
+# Download MySql
+sudo sh -c 'echo "deb http://repo.mysql.com/apt/ubuntu bionic mysql-5.7" >> /etc/apt/sources.list.d/mysql.list'
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7B3B788A8D3785C
+
+# Update packages
+sudo apt update
+
+#Check if repo has been installed
+sudo apt-cache policy mysql-server
+
+# install MySql 5.7
+sudo apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7* -y
+
+# Check version
+mysql --version
