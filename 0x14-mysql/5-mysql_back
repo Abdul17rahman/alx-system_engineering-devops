@@ -1,0 +1,17 @@
+#!/bin/bash
+# Creates a mysql database backup
+
+# MySQL credentials
+MYSQL_USER="root"
+MYSQL_PASSWORD="$1"
+
+# Output file names
+DUMP_FILE="backup.sql"
+ARCHIVE_FILE="$(date +'%d-%m-%Y').tar.gz"
+
+# Dump all MySQL databases
+mysqldump -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" --all-databases > "$DUMP_FILE"
+
+# Create a compressed tar archive
+tar -czvf "$ARCHIVE_FILE" "$DUMP_FILE"
+
