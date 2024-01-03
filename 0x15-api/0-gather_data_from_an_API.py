@@ -5,12 +5,12 @@ Get data from an APi using requests
 
 
 from requests_html import HTMLSession
-import sys
+from sys import argv
 import json
 
 
 session = HTMLSession()
-user_id = int(sys.argv[1])
+user_id = int(argv[1])
 url = 'https://jsonplaceholder.typicode.com'
 
 
@@ -28,10 +28,10 @@ if __name__ == "__main__":
     user = get_user(user_id, url)
     todos = get_todos(user_id, url)
 
-    completed = [todo for todo in todos if todo['completed']]
-    emp_name = user['name']
+    completed = [todo for todo in todos if todo.get('completed')]
+    emp_name = user.get('name')
     print(f'Employee {emp_name} is done with tasks({len(completed)}/{len(todos)})')
 
     for todo in completed:
-        title = todo['title']
+        title = todo.get('title')
         print(f'\t{title}')
