@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-'''API request module'''
+"""
+    Get data from an API
+
+    a Python script that, using this REST API,
+    for a given employee ID, returns information
+    about his/her TODO list progress.
+"""
 
 
 from sys import argv
