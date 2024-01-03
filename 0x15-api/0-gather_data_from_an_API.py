@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Get data from an APi using requests
-"""
+"""API request module"""
 
 
 from requests_html import HTMLSession
