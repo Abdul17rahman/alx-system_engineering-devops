@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""API request module"""
+'''API request module'''
 
 
 from sys import argv
