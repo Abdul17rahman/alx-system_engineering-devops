@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
     Get data from an APi using requests
 """
