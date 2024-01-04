@@ -8,12 +8,12 @@
 """
 
 
+import sys
 import requests
-from sys import arg
 
 
 if __name__ == "__main__":
-    user_id = int(argv[1])
+    user_id = int(sys.argv[1])
     url = 'https://jsonplaceholder.typicode.com'
 
     def get_user(_id, _url):
