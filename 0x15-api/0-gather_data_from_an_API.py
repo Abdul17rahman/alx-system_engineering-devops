@@ -8,11 +8,10 @@
 """
 
 
-import sys
-import requests
-
-
 if __name__ == "__main__":
+    import requests
+    import sys
+
     user_id = int(sys.argv[1])
     url = 'https://jsonplaceholder.typicode.com'
 
