@@ -8,8 +8,8 @@
 """
 
 
-from sys import argv
 import requests
+from sys import arg
 
 
 if __name__ == "__main__":
