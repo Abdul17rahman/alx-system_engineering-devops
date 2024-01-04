@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     completed = [todo for todo in todos if todo.get('completed')]
     emp_name = user.get('name')
-    print('Employee {} is done with tasks({}/{})'
+    print('Employee {} is done with tasks({}/{}):'
           .format(emp_name, len(completed), len(todos)))
 
     for todo in completed:
