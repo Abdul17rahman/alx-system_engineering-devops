@@ -30,6 +30,8 @@ if __name__ == "__main__":
     filename = f'{user_id}.csv'
 
     with open(filename, 'w') as user_csv_file:
-        csv_writer = csv.writer(user_csv_file)
+        csv_writer = csv.writer(user_csv_file, delimiter=',',
+                                quotechar='"', quoting=csv.QUOTE_ALL)
         for todo in todos:
-            csv_writer.writerow([user_id, emp_name, todo.get('completed'), todo.get('title')])
+            csv_writer.writerow([user_id, emp_name,
+                                todo.get('completed'), todo.get('title')])
