@@ -26,12 +26,12 @@ if __name__ == "__main__":
     user = get_user(user_id, url)
     todos = get_todos(user_id, url)
 
-    emp_name = user.get('name')
+    emp_name = user.get('username')
     filename = f'{user_id}.csv'
 
     with open(filename, 'w') as user_csv_file:
         csv_writer = csv.writer(user_csv_file, delimiter=',',
                                 quotechar='"', quoting=csv.QUOTE_ALL)
         for todo in todos:
-            csv_writer.writerow([user_id, emp_name,
+            csv_writer.writerow([todo.get('userId'), emp_name,
                                 todo.get('completed'), todo.get('title')])
