@@ -17,6 +17,6 @@ def number_of_subscribers(subreddit):
 
             return subreddit_data["data"]["subscribers"]
         except Exception:
-            pass
+            return 0
     else:
         return 0
