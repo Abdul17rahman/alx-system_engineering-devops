@@ -11,9 +11,12 @@ def number_of_subscribers(subreddit):
             }
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
-    response = requests.get(url, headers=headers)
-    try:
-        data = response.json()
-        return data['data']['subscribers']
-    except KeyError:
-        return 0
+    if subreddit:
+        response = requests.get(url, headers=headers)
+        try:
+            data = response.json()
+            return data['data']['subscribers']
+        except KeyError:
+            return 0
+    else:
+        return None
