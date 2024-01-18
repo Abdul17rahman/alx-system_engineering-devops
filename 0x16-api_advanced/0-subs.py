@@ -19,4 +19,4 @@ def number_of_subscribers(subreddit):
         except KeyError:
             return 0
     else:
-        return None
+        return 0
