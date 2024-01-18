@@ -6,7 +6,7 @@ import requests
 
 def number_of_subscribers(subreddit):
     """functions to get subscribers for a given subreddit"""
-    if subreddit is None or not isinstance(subreddit, str):
+    if not subreddit or not isinstance(subreddit, str):
         return 0
 
     headers = {
