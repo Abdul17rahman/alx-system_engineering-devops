@@ -18,9 +18,12 @@ def top_ten(subreddit):
         try:
             subreddit_data = response.json()
 
-            top = subreddit_data["data"]["post"]
-            for data in top:
-                print(data)
+            posts = []
+
+            for post in subreddit_data["data"]["children"]:
+                post_data = post['data']
+                posts.append(post_data['title'])
+            return posts
         except Exception:
             print(None)
             return
