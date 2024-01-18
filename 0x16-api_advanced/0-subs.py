@@ -6,7 +6,7 @@ import requests
 
 def number_of_subscribers(subreddit):
     """functions to get subscribers for a given subreddit"""
-    if not subreddit or not isinstance(subreddit, str):
+    if not subreddit or type(subreddit) is not str:
         return 0
 
     headers = {
@@ -15,8 +15,8 @@ def number_of_subscribers(subreddit):
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
     response = requests.get(url, headers=headers, allow_redirects=False)
-    data = response.json()
-    try:
-        return data['data']['subscribers']
-    except Exception:
+    if response.status_code == 200:
+        response = response.json()
+    else:
         return 0
+    return response.get('data', {}).get('subscribers', 0)
