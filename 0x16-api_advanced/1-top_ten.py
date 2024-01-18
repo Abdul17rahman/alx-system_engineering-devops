@@ -7,7 +7,7 @@ import requests
 
 def top_ten(subreddit):
     """ Function to return the No of Subs"""
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
 
     params = {'limit': 10}
     headers = {'User-Agent': 'Myserver/1.0'}
@@ -18,13 +18,9 @@ def top_ten(subreddit):
         try:
             subreddit_data = response.json()
 
-            posts = []
-
             for post in subreddit_data["data"]["children"]:
-                post_data = post['data']
-                posts.append(post_data['title'])
-            return posts
-        except Exception:
+                print(post['data']['title'])
+        except KeyError:
             print(None)
             return
     else:
