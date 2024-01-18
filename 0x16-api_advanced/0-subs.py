@@ -1,20 +1,19 @@
 #!/usr/bin/python3
-""" module for a function that queries reddit subscriber"""
-
+""" module to get subscribers for a given subreddit"""
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """ Function to return the No of Subs"""
+    """functions to get subscribers for a given subreddit"""
+    headers = {
+            'User-Agent': 'Your-User-Agent-Name'
+            }
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {'User-Agent': 'MyServer/1.0'}
 
-    response = requests.get(url, headers=headers, allow_redirects=False)
-
+    response = requests.get(url, headers=headers)
     try:
-        subreddit_data = response.json()
-
-        return subreddit_data["data"]["subscribers"]
+        data = response.json()
+        return data['data']['subscribers']
     except KeyError:
-            return 0
+        return 0
