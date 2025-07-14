@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+
 # Script connects to a remove server
-ssh -i ~/.ssh/school ubuntu@3.80.18.141
+ssh -i ~/.ssh/school ubuntu@3.82.240.90
